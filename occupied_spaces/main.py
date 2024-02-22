@@ -43,10 +43,12 @@ def is_occupied(space):
     return False
 
 while(current_location < spaces_nums):
+  # 어제 오늘 주차되었다면 total 의 수를 더하기 1 한다
   if (is_occupied(yesterday_occupied_spaces_info[current_location]) and
     is_occupied(today_occupied_spaces_info[current_location])):
     total += 1
 
+  # 현재 위치를 업데이트한다
   current_location += 1
 
 # 어제 오늘 주차된 공간의 수
