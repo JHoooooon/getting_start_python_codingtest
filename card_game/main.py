@@ -51,6 +51,73 @@ Player A: m point(s)
 Player B: n point(s)
 
 m 은 플레이어 A 의 총점이고, n 은 플레이어 B 의 총점이다
+
+* 입력 예시
+
+three
+seven
+queen
+eight
+five
+ten
+king
+eight
+jack
+queen
+six
+queen
+jack
+eight
+seven
+three
+ten
+four
+king
+nine
+six
+seven
+ace
+four
+jack
+ace
+ten
+nine
+ten
+queen
+ace
+king
+seven
+two
+five
+two
+five
+nine
+three
+king
+six
+eight
+jack
+six
+five
+four
+two
+ace
+four
+three
+two
+nine
+
+*  출력 예시
+
+Player A scores 2 point(s).
+Player A scores 1 point(s).
+Player A scores 3 point(s).
+Player B scores 3 point(s).
+Player A scores 1 point(s).
+Player B scores 4 point(s).
+Player A: 7 point(s).
+Player B: 7 point(s).
+
 """
 
 # deck
@@ -64,10 +131,10 @@ b_point = 0
 # high 카드가 있는지 확인하는 함수
 def is_high_card(card: str):
     # high card 목록
-    high_card = ['jack', 'queen', 'king', 'ace']
+    high_cards = ['jack', 'queen', 'king', 'ace']
 
     # high_card 가 있다면 True
-    if card in high_card:
+    if card in high_cards:
         return True
     # 아니면 False
     else:
@@ -89,7 +156,7 @@ def point_selector(high_card: str):
 # 포인터 얻는 함수
 def get_points(deck: list, high_card: str):
     # high card 목록
-    high_card = ['jack', 'queen', 'king', 'ace']
+    high_cards = ['jack', 'queen', 'king', 'ace']
 
     # deck 에서 high_card 를 가지고 있는지 확인
     # high_card 를 가진다면 지속하지 못하므로 False
@@ -97,7 +164,7 @@ def get_points(deck: list, high_card: str):
     is_continue = False
 
     # 포인트를 얻기 위한 최소 소지 카드 수
-    least_n = high_card.index(high_card) + 1
+    least_n = high_cards.index(high_card) + 1
 
     # deck 에 남아있는 카드 갯수
     deck_length = len(deck)
@@ -161,16 +228,15 @@ deck = set_deck()
 while(idx < 52):
     # player 선택
     player = player_selector(idx)
+    # 사용할 카드
     card = deck[idx]
-
-    # 입력된 카드를 deck 에서 삭제
-    deck.pop(idx);
 
     # high_card 인지 확인
     if is_high_card(card):
         # high_card 라면 point 를 얻는다
         # 0 - 4 중 하나의 포인트
-        point = get_points(deck, card)
+        # deck[idx + 1:] 을 하여 idx 이후의 리스트를 생성하여 첫번째 인자로 넘긴다
+        point = get_points(deck[idx + 1:], card)
 
         # point 가 0 이 아니라면 output 후 플레이어 포인트 합산
         if point != 0:
