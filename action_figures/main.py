@@ -73,6 +73,8 @@ def box_ok(box_list: list):
             else:
                 return False
 
+    return True
+
 # --------------------- 
 # set 박스 리스트 함수
 def set_box_list():
