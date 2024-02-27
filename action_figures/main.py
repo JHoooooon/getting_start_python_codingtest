@@ -69,7 +69,7 @@ def box_ok(box_list: list):
         box_len = len(box)
         for idx in range(box_len - 1):
             if box[idx] <= box[idx + 1]:
-                return True
+                continue
             else:
                 return False
 
