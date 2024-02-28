@@ -128,16 +128,16 @@ word.out 이라는 파일에 출력을 쓴다. 올바른 형식의 에세이를 
 1. 첫번째 라인의 단어수 n 과 최대 문자수 k 를 가져온다 -> get_count
 2. 두번째 라인을 가져와 각 단어를 배열로 만든다 -> get_words
 3. 어느 단어까지 구성했는지 알수있는 idx 변수를 사용한다 -> wirte_lines 의 idx 변수
-4. 이전 단어의 인덱스에서 부터 현재 인덱스까지 리스트를 자르기 위해 prev_idx 변수를 사용한다 -> wirte_lines 의 prev_idx 변수
-4. 각 단어를 n - idx 순회,
+5. 이전 단어의 인덱스에서 부터 현재 인덱스까지 리스트를 자르기 위해 prev_idx 변수를 사용한다 -> wirte_lines 의 prev_idx 변수
+6. 각 단어를 n - idx 순회,
    각 단어의 문자를 count 하여 합산,
    합산된 count 가 k 보다 크면, 그 특정 단어의 index 보다 작은 단어까지만 한줄로 구분한다 -> wirte_lines
    - idx: 현재 index
    - prev_idx: 이전 인덱스
    - n - idx: 라인화된 단어를 제외한 순회당할 단어의 개수가 된다  
    - 만들어진 각 라인은 word.out 에 추가된다 -> write_line
-5. idx 가 n 과 같을때 순회를 멈춘다 
-6. word.out 을 출력한다. -> print_read_lines
+7. idx 가 n 보다 작을때 순회를 멈춘다 
+8. word.out 을 출력한다. -> print_read_lines
   """
 
 import os;
@@ -311,4 +311,25 @@ def write_line(out_path, line):
 차라리 새로운 배열객체를 만드는것보다는 문자열로 연결해서 처리하는것이 더 좋아보인다
 코드 상으로도 더 보기 쉬워진다.
 
+수정해본 wirte_lines 에서
+line 을 if 문 밑으로 내렸는데 책에서는 다음처럼 처리했다
+
+# word_list_len 길이 만큼 순회
+for word in word_list:
+    # line 는 빈공백을 구분자로 word 를 합친 문자열이다 
+    line += word + " "
+    # word 의 길이를 count 에 합산
+    count += len(word)
+    # 합산된 count 가 line_limit 보다 크면 쓰기 작업후 break
+    if count > line_limit:
+        # 순회된 prev_idx 부터 현재까지 순회된 idx 까지 자른 리스트를 전달
+        write_line(output_path, line[:-1])
+        # 라인값을 빈 문자로 초기화
+        line = ''
+        break;
+    # idx 증가
+    idx += 1
+
+음.. -1 값으로 slice 하면 맨뒤의 원소는 제외하고 앞에 있는 모든 원소를 가져온다
+이렇게 처리해도 될듯하다.
 """
