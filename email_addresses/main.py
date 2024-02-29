@@ -143,26 +143,28 @@ def replace_to_lower(emails: list[str]) -> list:
 
     return new_emails
 
-def to_email_dict(emails: list[str]) -> dict:
-    """
-    이메일을 키로, 이메일의 개수를 값으로 하는
-    dict 를 만드는 함수
+# 문제이해를 약간 잘못했음
+#
+# def to_email_dict(emails: list[str]) -> dict:
+#     """
+#     이메일을 키로, 이메일의 개수를 값으로 하는
+#     dict 를 만드는 함수
 
-    Parmas:
-        emails (list): 이메일 리스트
-    Returns:
-        dict: 이메일을 키로, 이메일의 개수를 값으로 하는 dict 
-    """
+#     Parmas:
+#         emails (list): 이메일 리스트
+#     Returns:
+#         dict: 이메일을 키로, 이메일의 개수를 값으로 하는 dict 
+#     """
 
-    email_dict = {}
+#     email_dict = {}
 
-    for email in emails:
-        if email in email_dict:
-            email_dict[email] += 1
-        else:
-            email_dict[email] = 1
+#     for email in emails:
+#         if email in email_dict:
+#             email_dict[email] += 1
+#         else:
+#             email_dict[email] = 1
         
-    return email_dict
+#     return email_dict
 
 for i in range(10):
     email_count = int(input())
