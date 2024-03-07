@@ -100,6 +100,7 @@ def get_mostidx(scarf: list[int], scarf_len: int):
     leftmost_idx = {}
     rightmost_idx = {}
 
+    # O(N)
     for idx in range(scarf_len):
         color = scarf[idx]
 
@@ -126,6 +127,7 @@ def get_longest_scarf(shape_len: int, mostidx: list[Dict[str, int]]):
     leftmost_idx = mostidx[0]
     rightmost_idx = mostidx[1]
 
+    # O(N)
     for _idx in range(shape_len):
         scarf_shape = input().rstrip().split()
         first = int(scarf_shape[0])
